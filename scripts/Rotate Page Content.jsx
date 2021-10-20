@@ -1,13 +1,11 @@
 ﻿var doc = app.activeDocument;
 
 function main() {
-    var myDialog = app.dialogs.add ({name: "Rotate Page Content"});
-
     var sprdCnt = doc.spreads.length;
 
     var rotate180 = app.transformationMatrices.add({counterclockwiseRotationAngle:180});
 
-    //Add a dialog column.
+    var myDialog = app.dialogs.add ({name: "Rotate Page Content", canCancel: true});
     with(myDialog){
         with(dialogColumns.add()) {
             with(borderPanels.add()){
@@ -57,19 +55,23 @@ function main() {
                 // alert(sprdPgs.length);
 
                 if (sprdPgs.length > 1) {
-                    var sprdAnchor = [[0,0], CoordinateSpaces.spreadCoordinates];
+                    var sprdAnchor = [[0,0], CoordinateSpaces.SPREAD_COORDINATES];
                     for (k = 0; k < sprd.pageItems.length; k++) {
-                        transformFunc(sprd.pageItems[k], CoordinateSpaces.spreadCoordinates, sprdAnchor, rotate180);
+                        transformFunc(sprd.pageItems[k], CoordinateSpaces.SPREAD_COORDINATES, sprdAnchor, rotate180);
                     }
                 } else {
-                    var pageWidthHalved = sprdPgs[0].bounds[3]/2;
-                    alert(pageWidthHalved);
-                    var pageDir = sprdPgs[0].side == PageSideOptions.leftHand;
-                    var pageAnchor = [[(pageDir?-pageWidthHalved:pageWidthHalved),0], CoordinateSpaces.spreadCoordinates];
+                    var pageWidth = sprdPgs[0].bounds[3];
 
-                    for (k = 0; k < sprd.pageItems.length; k++) {
+                    alert(pageWidth);
+
+                    var pageWidthHalved = pageWidth / 2;
+                    alert(String(pageWidthHalved));
+                    var pageDir = sprdPgs[0].side == PageSideOptions.LEFT_HAND;
+                    var pageAnchor = [[(pageDir?-pageWidthHalved:pageWidthHalved),0], CoordinateSpaces.SPREAD_COORDINATES];
+
+                    for (var k = 0; k < sprd.pageItems.length; k++) {
                         var pgItem = sprd.pageItems[k];
-                        transformFunc(sprd.pageItems[k], CoordinateSpaces.spreadCoordinates, pageAnchor, rotate180);
+                        transformFunc(sprd.pageItems[k], CoordinateSpaces.SPREAD_COORDINATES, pageAnchor, rotate180);
                     }
                 }
             }
