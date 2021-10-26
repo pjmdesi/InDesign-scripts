@@ -1,0 +1,6 @@
+Table Transpose:
+    • Add border transposition handling
+        - top borders     <->  left borders
+        - bottom borders  <->  right borders
+    • Maybe add a dialog to ask user if they want to
+    • if ^, maybe in dialog, also ask if use wants any styling transposed (maybe they only want the data transposed?)

@@ -1,11 +1,14 @@
 
 // Table Transpose v1.1
-// by Iain Anderson
-// indesign@funwithstuff.com
 
 // Modified by PJM Design in 2021
 // contact@pjm.design
 // Added some error checking and fallbacks for empty cells
+
+// Original Author:
+// Iain Anderson
+// Retreived from https://funwithstuff.com/blog/254/
+// indesign@funwithstuff.com
 
 // USE ON BACKUP COPIES
 // NO RESPONSIBILITY TAKEN FOR ANY DAMAGE CAUSED.
